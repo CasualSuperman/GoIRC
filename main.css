@@ -9,68 +9,78 @@ body{
 	text-shadow: rgba(0,0,0,0.01) 0 0 1px;
 }
 body * {
+	margin: 0;
+	padding: 0;
 	text-align: left;
 }
-ul {
-	list-style-type: none;
-	margin: 0;
-}
-li {
-	display: block;
-	float: left;
-}
-#networks {
+
+header {
+	color: #555;
 	font-size: 25pt;
-	font-weight:bold;
+	font-weight: bold;
 }
-#networks li {
+header ul {
+	list-style-type: none;
+}
+header li {
+	cursor: pointer;
+	display: inline;
 	padding: 2px;
-	margin:1px 8px;
+	margin: 1px 8px;
 }
-#chats {
-	clear: left;
+#rooms {
 	font-size: 0.75em;
 	font-weight: normal;
 }
-li {
-	color: #555;
-	cursor: pointer;
-}
-li.active {
+
+header li.active {
 	color: #19A2DE;	
 }
-li.nonitem {
+header li.nonitem {
 	color: #CCC;	
 }
-.clearfix {
-	clear: left; height: 0; width: 1em;	
-}
+
 #chat {
-	height: 100%;
-}
-#chat table {
 	bottom: 0;
-	clear: left;
+	border-spacing: 0;
 	font-family: "Calibri";
-	font-weight: normal;
+	padding-bottom: 1.5em;
 	position: absolute;
-	width: 100%;
 }
-#chat table .author {
+
+#chat #log .author, #chat #log .status {
 	color: #666;
+}
+
+#chat #log .status td {
+	background-color: #FAFAFA;
+	border-top: 4px solid #FAFAFA;
+	vertical-align: baseline;
+}
+
+#chat #log .author {
 	padding-right: 1em;
 	text-align: right;
 	vertical-align: top;
 }
-#input td{
-	padding-top: 1em;
-	white-space: nowrap;
+
+#chat #log .me {
+	color: #222;
 }
-#input input {
+
+#chat #log .mention {
+	color: #19A2DE;
+}
+
+#talk {
 	background-color: #EEE;
 	border-style: none;
-	font-size: 1.25em;
-	margin: 0;
-	padding: 0;
+	bottom: 0;
+	font-size: 1.5em;
+	position: absolute;
 	width: 100%;
+}
+#talk:focus {
+	background-color: #DDD;
+	outline: none;
 }
