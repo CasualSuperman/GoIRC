@@ -60,16 +60,15 @@ header li.nonitem {
 
 #chat {
 	color: #333;
-	display: table-cell;
 	font-family: "Calibri";
 	height: 100%;
-	padding-bottom: 1.5em;
 	vertical-align: bottom;
 	width: 100%;
 }
 
 #chat #log {
 	border-spacing: 0;
+	padding-bottom: 1.5em;
 }
 
 #chat #log .author, #chat #log .status {

@@ -7,18 +7,18 @@
  */
 var irc = {
 	connections: [],
-	newConnection: function(server, name) {
+	newConnection: function(server, nick) {
 		
 	},
 	newChannel: function(server, channel) {
 		
 	},
-	newPM: function(server, name) {
+	newPM: function(server, nick) {
 		
 	}
 };
 
-var Channel = function(Server, name) {
+var Channel = function(Server, nick) {
 	
 }
 
@@ -26,6 +26,12 @@ Channel.prototype = {
 	connect: function() {
 	},
     disconnect: function() {
+
+    },
+    join: function(name) {
+
+    },
+    part: function(name) {
 
     }
 }
