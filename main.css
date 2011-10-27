@@ -1,0 +1,76 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: "Segoe UI", Verdana;
+	text-align: center;
+	text-shadow: rgba(0,0,0,0.01) 0 0 1px;
+}
+body * {
+	text-align: left;
+}
+ul {
+	list-style-type: none;
+	margin: 0;
+}
+li {
+	display: block;
+	float: left;
+}
+#networks {
+	font-size: 25pt;
+	font-weight:bold;
+}
+#networks li {
+	padding: 2px;
+	margin:1px 8px;
+}
+#chats {
+	clear: left;
+	font-size: 0.75em;
+	font-weight: normal;
+}
+li {
+	color: #555;
+	cursor: pointer;
+}
+li.active {
+	color: #19A2DE;	
+}
+li.nonitem {
+	color: #CCC;	
+}
+.clearfix {
+	clear: left; height: 0; width: 1em;	
+}
+#chat {
+	height: 100%;
+}
+#chat table {
+	bottom: 0;
+	clear: left;
+	font-family: "Calibri";
+	font-weight: normal;
+	position: absolute;
+	width: 100%;
+}
+#chat table .author {
+	color: #666;
+	padding-right: 1em;
+	text-align: right;
+	vertical-align: top;
+}
+#input td{
+	padding-top: 1em;
+	white-space: nowrap;
+}
+#input input {
+	background-color: #EEE;
+	border-style: none;
+	font-size: 1.25em;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
