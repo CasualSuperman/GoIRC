@@ -1,14 +1,14 @@
 package main
 
-import strings
+import "strings"
 
 type m_part struct {
 	channels []string
 	reason string
 }
 
-func NewPartMessage(rooms []string, reason string) {
-	return m_part{append(nil, rooms), reason}
+func NewPartMessage(rooms []string, reason string) m_part {
+	return m_part{append([]string{}, rooms...), reason}
 }
 
 func (m m_part) String() string {
@@ -17,7 +17,7 @@ func (m m_part) String() string {
 		if i > 0 {
 			s += ","
 		}
-		if strings.TrimL(val, "#") == val {
+		if strings.TrimLeft(val, "#") == val {
 			s += "#" + val
 		} else {
 			s += val
