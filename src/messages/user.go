@@ -25,6 +25,6 @@ func (m m_user) String() string {
 	s += "*"
 	s += " "
 	s += ":"
-	s += m.action.Data
+	s += m.realName
 	return s
 }
