@@ -1,3 +1,4 @@
+#library('goirc');
 /*!
  * goIRC Frontend v0.1.0
  *
