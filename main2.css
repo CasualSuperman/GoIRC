@@ -1,0 +1,64 @@
+html, body{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font-family: "Segoe UI", Verdana;
+	text-align: center;
+	-webkit-text-stroke:transparent 1px
+}
+body *{
+	text-align: left;
+}
+#tabs{
+	font-size: 15pt;
+	overflow: hidden;
+}
+#tabs .tab{
+	border-bottom: 5px solid #a0acc5;
+	color: #a0acc5;
+	cursor: pointer;
+	display: block;
+	float: left;
+	padding: 0 0.5em;
+	margin: 0 0.25em;
+	min-width: 80px;
+	max-width: 160px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-webkit-transition: border-color 0.5s ease, color 0.5s ease, max-width 0.5s ease;
+	-moz-transition: border-color 0.5s ease, color 0.5s ease, max-width 0.5s ease;
+	transition: border-color 0.5s ease, color 0.5s ease, max-width 0.5s ease;
+	-moz-user-select: none;
+	white-space: nowrap;
+}
+#tabs .tab.active{
+	border-bottom-color: #607d9e;
+	color: #607d9e;
+}
+#tabs .tab:hover{
+	color: #607d9e;
+	max-width: 400px;
+}
+#tabs .tab.dragging{
+	max-width: 160px;
+	-webkit-transition: max-width 0.05s linear;
+	-moz-transition: max-width 0.05s linear;
+	transition: max-width 0.05s linear;
+}
+#tabs .tab.alert{
+	-webkit-animation: colors 1s linear infinite;
+	-moz-animation: colors 1s linear infinite;
+	animation: colors 1s linear infinite;
+ 	color: #9e6073;
+	border-color: #9e6073;
+}
+@-webkit-keyframes colors {
+	0%		{border-color: #a0acc5;}
+	50%		{border-color: #9e6073;}
+	100%	{border-color: #a0acc5;}
+}
+
+#page{
+	min-height: 500px;
+}
