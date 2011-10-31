@@ -4,4 +4,5 @@ package main
 type User struct {
 	connections []Irc.Connection
 	comm        Web.Connection
+	username    string
 }
