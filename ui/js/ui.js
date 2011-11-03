@@ -22,8 +22,6 @@ function stickToBottom() {
 		var val = maxSize - defaultSize - marginSize;
 		log.style.paddingTop = val + "px";
 	}
-	console.log("maxSize: ", maxSize);
-	console.log("size: ", defaultSize - marginSize);
 	setTimeout(stickToBottom, 300);
 }
 
