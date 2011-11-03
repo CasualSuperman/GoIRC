@@ -6,17 +6,15 @@ import (
 )
 
 func process(read *bufio.ReadWriter, to chan message) {
-		defer func() {
-			recover()
-			process(read, to)
-		}()
 		for {
 			// Try to read from the network
 			line, isPrefix, err := read.ReadLine()
 			if err != nil {
-				nerr := err.(net.Error)
-				if !nerr.Timeout() {
-					panic("ERROR:" + nerr.String())
+				nerr, ok := err.(net.Error)
+				if ok && !nerr.Timeout() {
+					panic("ERROR: " + nerr.String())
+				} else if !ok {
+					panic("ERROR: " + err.String())
 				}
 			}
 			buff := ""
