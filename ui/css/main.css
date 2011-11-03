@@ -13,7 +13,12 @@ body * {
 	padding: 0;
 	text-align: left;
 }
-
+td::selection {
+	background: white;
+}
+td span::selection {
+	background: #9CD9F4;
+}
 header {
 	color: #555;
 	font-size: 25pt;
