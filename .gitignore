@@ -1,2 +1,4 @@
 *.6
 goirc
+_obj
+_test
