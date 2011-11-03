@@ -4,7 +4,7 @@ type m_quit struct {
 	reason string
 }
 
-func NewQuitMessage(reason string) {
+func NewQuitMessage(reason string) m_quit {
 	return m_quit{reason}
 }
 

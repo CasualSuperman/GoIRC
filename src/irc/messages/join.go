@@ -6,7 +6,7 @@ type m_join struct {
 	channel string
 }
 
-func NewJoinMessage(channel string) {
+func NewJoinMessage(channel string) m_join{
 	return m_join{channel}
 }
 
