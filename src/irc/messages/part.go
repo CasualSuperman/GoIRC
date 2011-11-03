@@ -1,4 +1,4 @@
-package main
+package irc
 
 import "strings"
 

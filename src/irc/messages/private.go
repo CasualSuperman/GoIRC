@@ -1,4 +1,4 @@
-package main
+package irc
 
 type m_private struct {
 	target string

@@ -1,4 +1,4 @@
-package main
+package irc
 
 type message interface {
 	String() string
