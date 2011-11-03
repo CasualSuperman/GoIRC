@@ -115,6 +115,10 @@ header li.nonitem {
 	color: #19A2DE;
 }
 
+#chat #log a.room {
+	color: #D11141;
+}
+
 #talk {
 	background-color: #EEE;
 	border-style: none;
@@ -127,3 +131,14 @@ header li.nonitem {
 	background-color: #DDD;
 	outline: none;
 }
+
+/*
+Metro Black : #000000
+Metro Blue : #00AEDB
+Metro Green : #00B159
+Metro Orange : #F37735
+Metro Pink : #EC098C
+Metro Purple : #7C4199
+Metro Red : #D11141
+Metro Yellow : #FFC425
+*/
