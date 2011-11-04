@@ -25,5 +25,5 @@ func (m m_part) String() string {
 	}
 	s += " :"
 	s += m.reason
-	return s
+	return s + "\n"
 }

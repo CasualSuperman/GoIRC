@@ -10,7 +10,7 @@ func NewQuitMessage(reason string) m_quit {
 
 func (m m_quit) String() string {
 	if m.reason == "" {
-		return ":source QUIT :Leaving."
+		return ":source QUIT :Leaving.\n"
 	}
-	return ":source QUIT :" + m.reason
+	return ":source QUIT :" + m.reason + "\n"
 }

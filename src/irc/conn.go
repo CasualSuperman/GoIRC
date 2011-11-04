@@ -9,11 +9,12 @@ import (
 
 type Conn struct {
 	ServerConn net.Conn
+	info user
 	Recv <-chan Message
 	Send chan<- Message
 }
 
-func Connect(server string) (c Conn, err os.Error) {
+func Connect(server string, info user) (c Conn, err os.Error) {
 	stream, err := net.Dial("tcp", server)
 	if err != nil {
 		return c, err
@@ -22,6 +23,7 @@ func Connect(server string) (c Conn, err os.Error) {
 	send := make(chan Message, 5)
 
 	c = Conn{stream,
+			 info,
 			 recv,
 			 send}
 	go handle(stream, &recv, &send)

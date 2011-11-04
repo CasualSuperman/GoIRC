@@ -12,7 +12,7 @@ func NewJoinMessage(channel string) m_join{
 
 func (m m_join) String() string {
 	if m.channel == "" {
-		return ":source JOIN 0"
+		return ":source JOIN 0\n"
 	}
 	s := ":source JOIN :"
 	if strings.TrimLeft(m.channel, "#") == m.channel {
@@ -20,5 +20,6 @@ func (m m_join) String() string {
 	} else {
 		s += m.channel
 	}
+	s += "\n"
 	return s
 }

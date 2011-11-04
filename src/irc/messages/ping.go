@@ -9,5 +9,5 @@ func NewPingMessage(message string) m_ping {
 }
 
 func (m m_ping) String() string {
-	return "PING :" + m.message
+	return "PING :" + m.message + "\n"
 }

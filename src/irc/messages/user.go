@@ -26,5 +26,5 @@ func (m m_user) String() string {
 	s += " "
 	s += ":"
 	s += m.realName
-	return s
+	return s + "\n"
 }
