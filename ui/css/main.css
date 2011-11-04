@@ -44,17 +44,20 @@ header li {
 	padding: 2px;
 }
 header li.mention {
-  -webkit-animation: colors 4s linear infinite;
+  -webkit-animation: colors 1.5s linear infinite;
 }
 @-webkit-keyframes colors {
 	0% {
-		text-shadow: rgba(25, 162, 222, 0) 0 0 10px;
+		color: #555;
+		text-shadow: 0 0 5px rgba(25, 162, 222, 0);
 	}
 	50% {
-		text-shadow: rgba(25, 162, 222, .4) 0 0 10px;
+		color: #5EBEE8;
+		text-shadow: 0 0 5px rgba(25, 162, 222, .7);
 	}
 	100% {
-		text-shadow: rgba(25, 162, 222, 0) 0 0 10px;
+		color: #555;
+		text-shadow: 0 0 5px rgba(25, 162, 222, 0);
 	}
 }
 header #gradient {
