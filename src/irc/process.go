@@ -2,19 +2,21 @@ package irc
 
 import (
 	"bufio"
+	"fmt"
 	"net"
+	"strings"
 )
 
-func process(read *bufio.ReadWriter, to chan message) {
+func process(read *bufio.ReadWriter, to chan Message) {
 		for {
 			// Try to read from the network
 			line, isPrefix, err := read.ReadLine()
 			if err != nil {
 				nerr, ok := err.(net.Error)
 				if ok && !nerr.Timeout() {
-					panic("ERROR: " + nerr.String())
+					to <- NewMessage("ERROR: " + nerr.String())
 				} else if !ok {
-					panic("ERROR: " + err.String())
+					to <- NewMessage("ERROR: " + err.String())
 				}
 			}
 			buff := ""
@@ -23,6 +25,13 @@ func process(read *bufio.ReadWriter, to chan message) {
 				line, isPrefix, err = read.ReadLine()
 			}
 			buff += string(line)
-			to <- NewMessage(buff)
+			if strings.Index(buff, "PING") == 0 {
+				resp := strings.Replace(buff, "PING", "PONG", 1)
+				read.WriteString(resp + "\n")
+				read.Flush()
+				fmt.Println(buff + " (" + resp + ")")
+			} else {
+				to <- NewMessage(buff)
+			}
 		}
 }

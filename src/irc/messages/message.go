@@ -1,9 +1,11 @@
 package irc
 
-type message interface {
+import "os"
+
+type Message interface {
 	String() string
 }
 
-func NewMessage(in string) message {
-	return nil
+func NewMessage(in string) Message {
+	return os.NewError(in)
 }

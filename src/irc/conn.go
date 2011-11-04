@@ -2,14 +2,15 @@ package irc
 
 import (
 	"bufio"
+	"fmt"
 	"net"
 	"os"
 )
 
 type Conn struct {
-	serverConn net.Conn
-	Recv <-chan message
-	Send chan<- message
+	ServerConn net.Conn
+	Recv <-chan Message
+	Send chan<- Message
 }
 
 func Connect(server string) (c Conn, err os.Error) {
@@ -17,26 +18,28 @@ func Connect(server string) (c Conn, err os.Error) {
 	if err != nil {
 		return c, err
 	}
-	recv := make(chan message, 5)
-	send := make(chan message, 5)
+	recv := make(chan Message, 5)
+	send := make(chan Message, 5)
 
 	c = Conn{stream,
 			 recv,
 			 send}
-	go handle(stream, recv, send)
+	go handle(stream, &recv, &send)
 	return c, nil
 }
 
-func handle(conn net.Conn, recv, send chan message) {
+func handle(conn net.Conn, recv, send *chan Message) {
 	io := bufio.NewReadWriter(bufio.NewReader(conn), bufio.NewWriter(conn))
-	data := make(chan message)
+	data := make(chan Message)
 	go process(io, data)
 	for {
 		select {
-			case i := <-send:
-				io.WriteString(i.String() + "\n")
-				io.Flush()
-			case recv <- <- data:
+			case i := <-*send:
+				fmt.Println("SENDING: " + i.String())
+				//io.WriteString(i.String() + "\n")
+				conn.Write([]byte(i.String()))
+				//io.Flush()
+			case *recv <- <- data:
 		}
 	}
 }
