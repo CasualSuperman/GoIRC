@@ -19,6 +19,9 @@ td::selection {
 td span::selection {
 	background: #9CD9F4;
 }
+td span::selection:window-inactive {
+	background: #E1B8A4;
+}
 header {
 	color: #555;
 	font-size: 25pt;
