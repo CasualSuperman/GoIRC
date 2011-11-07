@@ -1,5 +1,7 @@
 package irc
 
+const tmpl_user = "USER %s %d * :%s\n"
+
 type m_user struct {
 	username string
 	hidden bool
@@ -11,20 +13,14 @@ func NewUserMessage(username string, hidden bool, realName string) m_user {
 	return m
 }
 
-func (m m_user) String() string {
-	s := "USER"
-	s += " "
-	s += m.username
-	s += " "
+func (m m_user) Tmpl() string {
+	return tmpl_user
+}
+
+func (m m_user) Data() []interface{} {
+	i := 0
 	if m.hidden {
-		s += "8"
-	} else {
-		s += "0"
+		i = 8
 	}
-	s += " "
-	s += "*"
-	s += " "
-	s += ":"
-	s += m.realName
-	return s + "\n"
+	return []interface{}{m.username, i, m.realName}
 }

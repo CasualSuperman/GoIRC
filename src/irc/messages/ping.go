@@ -4,10 +4,16 @@ type m_ping struct {
 	message string
 }
 
+const ping_tmpl = "PONG %s"
+
 func NewPingMessage(message string) m_ping {
 	return m_ping{message}
 }
 
-func (m m_ping) String() string {
-	return "PING :" + m.message + "\n"
+func (m m_ping) Tmpl() string {
+	return ping_tmpl
+}
+
+func (m m_ping) Data() []interface{} {
+	return []interface{}{m.message}
 }

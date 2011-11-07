@@ -17,7 +17,7 @@ func main() {
 		i++
 		var data irc.Message
 		data, ok = <-conn.Recv()
-		fmt.Println(data.String())
+		fmt.Printf(data.Tmpl(), data.Data()...)
 		if i > 100 {
 			ok = false
 		}

@@ -5,13 +5,18 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"sync"
+)
+
+const (
+	DEBUG = true
 )
 
 type Conn struct {
-	ServerConn net.Conn
+	serverConn net.Conn
 	info user
-	recv *chan Message
-	send *chan Message
+	recv <-chan Message
+	sending *sync.Mutex
 }
 
 func Connect(server string, info user) (c Conn, err os.Error) {
@@ -19,40 +24,43 @@ func Connect(server string, info user) (c Conn, err os.Error) {
 	if err != nil {
 		return c, err
 	}
-	recv := make(chan Message, 5)
-	send := make(chan Message, 5)
 	go func() {
-		send <- info.NickMessage()
-		send <- info.UserMessage()
+		c.Send(info.NickMessage())
+		c.Send(info.UserMessage())
 	}()
-	c = Conn{stream,
-			 info,
-			 &recv,
-			 &send}
-	go handle(stream, &recv, &send)
+	send := make(chan Message)
+	recv := make(chan Message, 5)
+	c = c.init(stream, info, recv)
+	go handle(stream, recv, send)
 	return c, nil
 }
 
+func (c Conn) init(conn net.Conn, info user, recv chan Message) Conn {
+	c.serverConn = conn
+	c.info = info
+	c.recv = recv
+	var lock sync.Mutex
+	c.sending = &lock
+	return c
+}
+
 func (c Conn) Recv() <-chan Message {
-	return *c.recv
+	return c.recv
 }
 
-func (c Conn) Send() <-chan Message {
-	return *c.send
-}
-
-func handle(conn net.Conn, recv, send *chan Message) {
-	io := bufio.NewReadWriter(bufio.NewReader(conn), bufio.NewWriter(conn))
-	data := make(chan Message)
-	go process(io, data)
-	for {
-		select {
-			case i := <-*send:
-				fmt.Println("SENDING: " + i.String())
-				//io.WriteString(i.String() + "\n")
-				conn.Write([]byte(i.String()))
-				//io.Flush()
-			case *recv <- <- data:
-		}
+func (c Conn) Send(msg Message) {
+	c.sending.Lock()
+	if DEBUG {
+		fmt.Printf("->" + msg.Tmpl(), msg.Data()...)
 	}
+	_, err := fmt.Fprintf(c.serverConn, msg.Tmpl(), msg.Data()...)
+	if err != nil {
+		panic(err)
+	}
+	c.sending.Unlock()
+}
+
+func handle(conn net.Conn, recv, send chan Message) {
+	io := bufio.NewReadWriter(bufio.NewReader(conn), bufio.NewWriter(conn))
+	go process(io, recv)
 }

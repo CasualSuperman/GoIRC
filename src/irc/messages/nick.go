@@ -1,5 +1,7 @@
 package irc
 
+const tmpl_nick = "NICK %s\n"
+
 type m_nick struct {
 	nick string
 }
@@ -9,10 +11,10 @@ func NewNickMessage(nick string) m_nick {
 	return m
 }
 
-func (m m_nick) String() string {
-	s := "NICK"
-	s += " "
-	s += m.nick
-	s += "\n"
-	return s
+func (m m_nick) Tmpl() string {
+	return tmpl_nick
+}
+
+func (m m_nick) Data() []interface{} {
+	return []interface{}{m.nick}
 }

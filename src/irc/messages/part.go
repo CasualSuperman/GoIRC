@@ -1,29 +1,30 @@
 package irc
 
-import "strings"
+const tmpl_part = "PART %s :%s\n"
 
 type m_part struct {
-	channels []string
+	channels string
 	reason string
 }
 
 func NewPartMessage(rooms []string, reason string) m_part {
-	return m_part{append([]string{}, rooms...), reason}
+	chans := ""
+	for i, val := range rooms {
+		if i > 0 {
+			chans += ","
+		}
+		chans += val
+	}
+	if reason == "" {
+		reason = "Leaving."
+	}
+	return m_part{chans, reason}
 }
 
-func (m m_part) String() string {
-	s := ":source PART "
-	for i, val := range m.channels {
-		if i > 0 {
-			s += ","
-		}
-		if strings.TrimLeft(val, "#") == val {
-			s += "#" + val
-		} else {
-			s += val
-		}
-	}
-	s += " :"
-	s += m.reason
-	return s + "\n"
+func (m m_part) Tmpl() string {
+	return tmpl_part
+}
+
+func (m m_part) Data() []interface{} {
+	return []interface{}{m.channels, m.reason}
 }
