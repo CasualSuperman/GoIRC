@@ -1,12 +1,13 @@
 package main
 
 import (
-	irc "./conn"
+	irc "./_obj/irc"
 	"fmt"
 )
 
 func main() {
-	conn, err := irc.Connect("irc.foonetic.net:6667")
+	user := irc.NewUser("CasualSuperman", "rwertman", false, "Robert Wertman")
+	conn, err := irc.Connect("irc.foonetic.net:6667", user)
 	if err != nil {
 		panic(err)
 	}
@@ -15,16 +16,10 @@ func main() {
 	for ok {
 		i++
 		var data irc.Message
-		data, ok = <-conn.Recv
+		data, ok = <-conn.Recv()
 		fmt.Println(data.String())
-		if i == 2 {
-			fmt.Println("NICK CasualSuperman")
-			conn.ServerConn.Write([]byte("NICK CasualSuperman\n"))
-			fmt.Println("USER rwertman 8 * :Robert Wertman")
-			conn.ServerConn.Write([]byte("USER rwertman 8 * :Robert Wertman\n"))
-		}
 		if i > 100 {
-			break
+			ok = false
 		}
 	}
 }
