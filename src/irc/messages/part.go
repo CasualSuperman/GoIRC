@@ -3,8 +3,8 @@ package irc
 const tmpl_part = "PART %s :%s\n"
 
 type m_part struct {
-	channels string
-	reason string
+	Channels string
+	Reason string
 }
 
 func NewPartMessage(rooms []string, reason string) m_part {
@@ -26,5 +26,5 @@ func (m m_part) Tmpl() string {
 }
 
 func (m m_part) Data() []interface{} {
-	return []interface{}{m.channels, m.reason}
+	return []interface{}{m.Channels, m.Reason}
 }

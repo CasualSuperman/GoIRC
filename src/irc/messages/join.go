@@ -3,7 +3,7 @@ package irc
 const tmpl_join = "JOIN %s\n"
 
 type m_join struct {
-	channel string
+	Channel string
 }
 
 func NewJoinMessage(channel string) m_join {
@@ -16,7 +16,7 @@ func NewJoinMessage(channel string) m_join {
 }
 
 func (m m_join) Data() []interface{} {
-	return []interface{}{m.channel}
+	return []interface{}{m.Channel}
 }
 
 func (m m_join) Tmpl() string {

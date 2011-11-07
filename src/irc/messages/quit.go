@@ -1,7 +1,7 @@
 package irc
 
 type m_quit struct {
-	reason string
+	Reason string
 }
 
 const tmpl_quit = "QUIT :%s\n"
@@ -18,5 +18,5 @@ func (m m_quit) Tmpl() string {
 }
 
 func (m m_quit) Data() []interface{} {
-	return []interface{}{m.reason}
+	return []interface{}{m.Reason}
 }

@@ -3,7 +3,7 @@ package irc
 const tmpl_nick = "NICK %s\n"
 
 type m_nick struct {
-	nick string
+	Nick string
 }
 
 func NewNickMessage(nick string) m_nick {
@@ -16,5 +16,5 @@ func (m m_nick) Tmpl() string {
 }
 
 func (m m_nick) Data() []interface{} {
-	return []interface{}{m.nick}
+	return []interface{}{m.Nick}
 }

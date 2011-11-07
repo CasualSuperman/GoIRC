@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	user := irc.NewUser("CasualSuperman", "rwertman", false, "Robert Wertman")
+	user := irc.NewUser("goirc_tester", "rwertman", false, "Robert Wertman")
 	conn, err := irc.Connect("irc.foonetic.net:6667", user)
 	if err != nil {
 		panic(err)
@@ -18,7 +18,13 @@ func main() {
 		var data irc.Message
 		data, ok = <-conn.Recv()
 		fmt.Printf(data.Tmpl(), data.Data()...)
-		if i > 100 {
+		if i == 20 {
+			conn.Send(irc.NewJoinMessage("#ufeff"))
+		}
+		if i == 30 {
+			conn.Send(irc.NewPartMessage([]string{"#ufeff"}, ""))
+		}
+		if i > 200 {
 			ok = false
 		}
 	}

@@ -3,8 +3,8 @@ package irc
 const tmpl_private = "PRIVMSG %s :%s\n"
 
 type m_private struct {
-	target string
-	message string
+	Target string
+	Message string
 }
 
 func NewPrivateMessage(target, message string) m_private {
@@ -16,5 +16,5 @@ func (m m_private) Tmpl() string {
 }
 
 func (m m_private) Data() []interface{} {
-	return []interface{}{m.target, m.message}
+	return []interface{}{m.Target, m.Message}
 }

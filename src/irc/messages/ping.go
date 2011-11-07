@@ -1,7 +1,7 @@
 package irc
 
 type m_ping struct {
-	message string
+	Message string
 }
 
 const ping_tmpl = "PONG %s"
@@ -15,5 +15,5 @@ func (m m_ping) Tmpl() string {
 }
 
 func (m m_ping) Data() []interface{} {
-	return []interface{}{m.message}
+	return []interface{}{m.Message}
 }
