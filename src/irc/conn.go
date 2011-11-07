@@ -20,7 +20,13 @@ type Conn struct {
 }
 
 func Connect(server string, info user) (c Conn, err os.Error) {
+	if DEBUG {
+		fmt.Printf("Connecting to %s.\n", server)
+	}
 	stream, err := net.Dial("tcp", server)
+	if DEBUG {
+		fmt.Printf("Connected.\n")
+	}
 	if err != nil {
 		return c, err
 	}
