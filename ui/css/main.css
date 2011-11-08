@@ -23,7 +23,7 @@ td span::selection:window-inactive {
 	background: #E1B8A4;
 }
 header {
-	color: #555;
+	color: #888;
 	font-size: 25pt;
 	font-weight: bold;
 	position: fixed;
@@ -92,36 +92,43 @@ header li.nonitem {
 	width: 100%;
 }
 
-#chat #log {
+/* #chat #log */
+#log {
 	border-spacing: 0;
 	padding-bottom: 1.5em;
 }
 
-#chat #log .author, #chat #log .status {
+/* #chat #log */
+#log .author, #chat #log .status {
 	color: #666;
 }
 
-#chat #log .status td {
+/* #chat #log */
+#log .status td {
 	background-color: #FAFAFA;
 	border-top: 4px solid #FAFAFA;
 	vertical-align: baseline;
 }
 
-#chat #log .author {
+/* #chat #log */
+#log .author {
 	padding-right: 1em;
 	text-align: right;
 	vertical-align: top;
 }
 
-#chat #log .me {
+/* #chat #log */
+#log .me {
 	color: #222;
 }
 
-#chat #log .mention {
+/* #chat #log */
+#log .mention {
 	color: #19A2DE;
 }
 
-#chat #log a.room {
+/* #chat #log */
+#log a.room {
 	color: #D11141;
 }
 

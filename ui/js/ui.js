@@ -6,7 +6,7 @@ function resize() {
 }
 function ready() {
 	resize();
-	stickToBottom();
+//	stickToBottom();
 }
 
 function stickToBottom() {
