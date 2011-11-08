@@ -21,9 +21,6 @@ func main() {
 		if i == 20 {
 			conn.Send(irc.NewJoinMessage("#ufeff"))
 		}
-		if i == 30 {
-			conn.Send(irc.NewPartMessage([]string{"#ufeff"}, ""))
-		}
 		if i > 200 {
 			ok = false
 		}
