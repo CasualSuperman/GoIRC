@@ -3,6 +3,7 @@ package main
 import (
 	irc "./_obj/irc"
 	"fmt"
+	"os/signal"
 )
 
 func main() {
@@ -12,17 +13,31 @@ func main() {
 		panic(err)
 	}
 	i := 0
-	ok := true
-	for ok {
+	done := false
+	quit := make(chan bool)
+	go func(quit chan bool) {
+		for !done {
+			data := <-signal.Incoming
+			if data.String() == "SIGINT: interrupt" {
+				quit <- true
+			} else {
+				fmt.Println(data.String())
+			}
+		}
+	}(quit)
+	for !done {
 		i++
-		var data irc.Message
-		data, ok = <-conn.Recv()
-		fmt.Printf(data.Tmpl(), data.Data()...)
+		select {
+			case data, ok := <-conn.Recv():
+				fmt.Printf(data.Tmpl(), data.Data()...)
+				if !ok {
+					done = true
+				}
+			case done = <-quit:
+		}
 		if i == 20 {
 			conn.Send(irc.NewJoinMessage("#ufeff"))
 		}
-		if i > 200 {
-			ok = false
-		}
 	}
+	conn.Send(irc.NewQuitMessage("Closed"))
 }
