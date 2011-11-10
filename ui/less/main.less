@@ -1,11 +1,11 @@
-$blue      : #19A2DE;
-$dark-grey : #222222;
-$dark-red  : #D11141;
-$grey      : #FAFAFA;
-$light-blue: #9CD9F4;
-$light-red : #E1B8A4
-$markup    : #CCCCCC;
-$neutral   : #888888;
+@blue      : #19A2DE;
+@dark-grey : #222222;
+@dark-red  : #D11141;
+@grey      : #FAFAFA;
+@light-blue: #9CD9F4;
+@light-red : #E1B8A4;
+@markup    : #CCCCCC;
+@neutral   : #888888;
 
 html, body {
 	font-family: "Segoe UI", Verdana;
@@ -25,14 +25,14 @@ td {
 	    background: white;
     }
     span::selection {
-	    background: $light-blue;
+	    background: @light-blue;
     }
     span::selection:window-inactive: {
-    	background: $light-red;
+    	background: @light-red;
     }
 }
 header {
-	color: $neutral;
+	color: @neutral;
 	font-size: 25pt;
 	font-weight: bold;
 	position: fixed;
@@ -52,28 +52,14 @@ header {
         padding: 2px;
     }
     li.mention {
-        -webkit-animation: colors 1.5s linear infinite;
+        animation: colors 1.5s linear infinite alternate;
     }
     li.active {
-	    color: $blue;	
+	    color: @blue;	
     }
     li.nonitem {
-	    color: $markup;	
+	    color: @markup;	
     }
-}
-@-webkit-keyframes colors {
-	0% {
-		color: #555;
-		text-shadow: 0 0 5px rgba(25, 162, 222, 0);
-	}
-	50% {
-		color: #5EBEE8;
-		text-shadow: 0 0 5px rgba(25, 162, 222, .7);
-	}
-	100% {
-		color: #555;
-		text-shadow: 0 0 5px rgba(25, 162, 222, 0);
-	}
 }
 header #gradient {
 	background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
@@ -83,7 +69,7 @@ header #gradient {
 	background: -o-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
 	background: -ms-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
 	background: linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+	filter: ~"progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 )";
 	height: 25px;
 	width: 100%;
 }
@@ -108,19 +94,19 @@ header #gradient {
             vertical-align: top;
         }
         .me {
-            color: $dark-grey;
+            color: @dark-grey;
         }
         .mention {
-            color: $blue;
+            color: @blue;
         }
         .room {
-            color: $dark-red;
+            color: @dark-red;
         }
         .status {
             color: #666;
             td {
-                background-color: $grey;
-                border-top: 4px solid $grey;
+                background-color: @grey;
+                border-top: 4px solid @grey;
                 vertical-align: baseline;
             }
         }
@@ -140,13 +126,11 @@ header #gradient {
     }
 }
 
-/*
-Metro Black : #000000
-Metro Blue : #00AEDB
-Metro Green : #00B159
-Metro Orange : #F37735
-Metro Pink : #EC098C
-Metro Purple : #7C4199
-Metro Red : #D11141
-Metro Yellow : #FFC425
-*/
+//Metro Black : #000000
+//Metro Blue : #00AEDB
+//Metro Green : #00B159
+//Metro Orange : #F37735
+//Metro Pink : #EC098C
+//Metro Purple : #7C4199
+//Metro Red : #D11141
+//Metro Yellow : #FFC425

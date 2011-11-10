@@ -1,0 +1,10 @@
+@keyframes colors {
+	from {
+		color: #555;
+		text-shadow: 0 0 5px rgba(25, 162, 222, 0);
+	}
+	to {
+		color: #5EBEE8;
+		text-shadow: 0 0 5px rgba(25, 162, 222, .7);
+	}
+}
