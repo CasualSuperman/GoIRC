@@ -1,4 +1,6 @@
-@blue      : #19A2DE;
+@import "../css/animation.css";
+
+@highlight : #19A2DE;
 @dark-grey : #222222;
 @dark-red  : #D11141;
 @grey      : #FAFAFA;
@@ -55,7 +57,7 @@ header {
         animation: colors 1.5s linear infinite alternate;
     }
     li.active {
-	    color: @blue;	
+	    color: @highlight;	
     }
     li.nonitem {
 	    color: @markup;	
@@ -97,7 +99,7 @@ header #gradient {
             color: @dark-grey;
         }
         .mention {
-            color: @blue;
+            color: @highlight;
         }
         .room {
             color: @dark-red;
