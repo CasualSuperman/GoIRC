@@ -1,0 +1,3 @@
+[submodule "src/irc"]
+	path = src/irc
+	url = git://github.com/tobias104/go-IRC-lib.git
