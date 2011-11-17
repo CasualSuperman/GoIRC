@@ -1,0 +1,17 @@
+@font-face{
+	font-family: "Segoe UI";
+	src: url(/fonts/Segoe/n.eot);
+	src:	local('Segoe UI'),
+		local('SegoeUI'),
+		url('/fonts/Segoe/n.ttf') format('truetype'),
+		url('/fonts/Segoe/n.otf') format('opentype');
+}
+@font-face{
+	font-family: "Segoe UI";
+	src: url(/fonts/Segoe/b.eot);
+	src:	local('Segoe UI Bold'),
+		local('SegoeUIBold'),
+		url('/fonts/Segoe/b.ttf') format('truetype'),
+		url('/fonts/Segoe/b.otf') format('opentype');
+	font-weight: bold;
+}

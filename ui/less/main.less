@@ -27,7 +27,7 @@ td {
     span::selection {
 	    background: @light-accent;
     }
-    span::selection:window-inactive: {
+    span::selection:window-inactive {
     	background: @light-red;
     }
 }
@@ -117,6 +117,17 @@ header #gradient {
     &:focus {
         background-color: #DDD;
         outline: none;
+    }
+}
+
+@keyframes colors {
+    from {
+        color: #555;
+        text-shadow: 0 0 5px rgba(25, 162, 222, 0);
+    }
+    to {
+        color: #5EBEE8;
+        text-shadow: 0 0 5px rgba(25, 162, 222, .7);
     }
 }
 
