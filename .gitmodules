@@ -1,3 +1,6 @@
 [submodule "src/irc"]
 	path = src/irc
 	url = git@github.com:tobias104/goty.git
+[submodule "ui"]
+	path = ui
+	url = git://github.com/tobias104/mintIrc.git
