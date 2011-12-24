@@ -1,16 +1,25 @@
 package main
 
 import (
-	"encoding/json"
+	//"bufio"
 	"fmt"
-	"net/http"
+	"http"
+	"io/ioutil"
+	"json"
+	"strings"
 	"websocket"
 )
 
+var lines []string
+
 func main() {
+	data, err := ioutil.ReadFile("log")
+	str := string(data)
+	lines = strings.Split(str, "\n")
+
 	http.Handle("/", websocket.Handler(Handle))
 	fmt.Println("Handling.")
-	err := http.ListenAndServe(":8088", nil)
+	err = http.ListenAndServe(":3654", nil)
 	if err != nil {
 		fmt.Println("ListenAndServe failed.")
 		fmt.Println(err)
@@ -18,28 +27,12 @@ func main() {
 }
 
 func Handle(ws *websocket.Conn) {
-	data := make(map[string]string)
-	done := false
-
-	data["msg"] = "Hello World!"
-
-	fmt.Printf("New Connection from %s.\n", ws.RemoteAddr())
-
-	reader := json.NewDecoder(ws)
-	writer := json.NewEncoder(ws)
-
-	writer.Encode(data)
-
-	for !done {
-		reader.Decode(&data)
-
-		if data["action"] == "disconnect" {
-			done = true
-		} else {
-			fmt.Println(data)
-		}
-
-		data := make(map[string]string)
+	fmt.Println("New Connection.")
+	fmt.Println(ws.Protocol)
+	fmt.Println(ws.Request)
+	encoder := json.NewEncoder(ws)
+	for _, line := range lines {
+		encoder.Encode(line)
 	}
 	fmt.Println("Conn closed.")
 	ws.Close()
