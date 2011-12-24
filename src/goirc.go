@@ -1,16 +1,25 @@
 package main
 
 import (
-	"bufio"
+	//"bufio"
 	"fmt"
 	"http"
+	"io/ioutil"
+	"json"
+	"strings"
 	"websocket"
 )
 
+var lines []string
+
 func main() {
-	http.Handle("/irc", websocket.Handler(Handle))
+	data, err := ioutil.ReadFile("log")
+	str := string(data)
+	lines = strings.Split(str, "\n")
+
+	http.Handle("/", websocket.Handler(Handle))
 	fmt.Println("Handling.")
-	err := http.ListenAndServe(":12345", nil)
+	err = http.ListenAndServe(":3654", nil)
 	if err != nil {
 		fmt.Println("ListenAndServe failed.")
 	}
@@ -20,10 +29,9 @@ func Handle(ws *websocket.Conn) {
 	fmt.Println("New Connection.")
 	fmt.Println(ws.Protocol)
 	fmt.Println(ws.Request)
-	reader := bufio.NewReader(ws)
-	ws.Write([]uint8("Hello, world.\n"))
-	for {
-		fmt.Println(reader.ReadLine())
+	encoder := json.NewEncoder(ws)
+	for _, line := range lines {
+		encoder.Encode(line)
 	}
 	fmt.Println("Conn closed.")
 }
