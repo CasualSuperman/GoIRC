@@ -1,12 +1,13 @@
 package main
 
 import (
-	//"bufio"
+	"encoding/json"
 	"fmt"
-	"http"
 	"io/ioutil"
-	"json"
+	"math/rand"
+	"net/http"
 	"strings"
+	"time"
 	"websocket"
 )
 
@@ -28,11 +29,15 @@ func main() {
 
 func Handle(ws *websocket.Conn) {
 	fmt.Println("New Connection.")
-	fmt.Println(ws.Protocol)
-	fmt.Println(ws.Request)
 	encoder := json.NewEncoder(ws)
+	i := 0
 	for _, line := range lines {
-		encoder.Encode(line)
+		i++
+		if (i > 47) {
+			time.Sleep(time.Duration((rand.Intn(2000) + 700) * int(time.Millisecond)))
+		}
+		data := struct{Server, Line string}{"irc.foonetic.net",line}
+		encoder.Encode(data)
 	}
 	fmt.Println("Conn closed.")
 	ws.Close()
